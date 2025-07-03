@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>AI Blog</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 20px;
+      direction: ltr;
+    }
+    nav {
+      background: #eee;
+      padding: 10px;
+      margin-bottom: 20px;
+    }
+  </style>
+</head>
+<body>
+  <nav>
+    <label for="language">🌐 Select Language: </label>
+    <select id="language" onchange="changeLanguage(this.value)">
+      <option value="en">English</option>
+      <option value="fr">Français</option>
+      <option value="ar">العربية</option>
+    </select>
+  </nav>
+
+  <h1>Welcome to the AI Blog</h1>
+  <p>This is a simple blog page powered by artificial intelligence.</p>
+  <p>Visual Style Update:
+
+Convert the overall design to a modern, clean aesthetic
+
+Use a contemporary color scheme (suggestions: gradient blues/darks or muted pastels)
+
+Implement card-based layout with subtle shadows
+
+Add smooth animations for state changes
+
+Money Display:
+
+Replace all linear/numeric money displays with curved visualization
+
+Implement animated curve charts (D3.js or Chart.js) for financial data
+
+Show trend lines and comparative curves where applicable
+
+Add interactive tooltips showing exact values on hover
+
+New Metrics:</p>
+
+  <!-- Google Translate element -->
+  <div id="google_translate_element" style="display:none;"></div>
+
+  <script type="text/javascript">
+    function changeLanguage(lang) {
+      const gtFrame = document.querySelector('iframe.goog-te-menu-frame');
+      if (!gtFrame) return;
+
+      const innerDoc = gtFrame.contentDocument || gtFrame.contentWindow.document;
+      const langItems = innerDoc.querySelectorAll('.goog-te-menu2-item span.text');
+
+      langItems.forEach(function(item) {
+        if (item.innerText.toLowerCase().includes(langMap[lang].toLowerCase())) {
+          item.click();
+        }
+      });
+
+      // Flip direction if Arabic
+      if (lang === 'ar') {
+        document.body.style.direction = 'rtl';
+      } else {
+        document.body.style.direction = 'ltr';
+      }
+    }
+
+    const langMap = {
+      en: 'English',
+      fr: 'French',
+      ar: 'Arabic'
+    };
+
+    function googleTranslateElementInit() {
+      new google.translate.TranslateElement({
+        pageLanguage: 'en',
+        autoDisplay: false
+      }, 'google_translate_element');
+    }
+  </script>
+
+  <script src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+</body>
+</html>
